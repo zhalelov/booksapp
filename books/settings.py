@@ -20,10 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6@nkkpkr24gw)jn0x=qtw$7_98b--vlm9vzuy-sz+z=e&e9m#('
+#SECRET_KEY = '6@nkkpkr24gw)jn0x=qtw$7_98b--vlm9vzuy-sz+z=e&e9m#('
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '6@nkkpkr24gw)jn0x=qtw$7_98b--vlm9vzuy-sz+z=e&e9m#(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = False
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,8 +127,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
+
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 import dj_database_url
 db_from_env = dj_database_url.config()
-DATABASES = ['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env)
