@@ -1,0 +1,25 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+Обновить автора
+{%endblock%}
+
+{%block content%}
+<h1>Обновить данные автора: {{author.title|title}}</h1>
+
+<form action="{%url 'author_update_url' slug=author.slug%}" method="post">
+{%csrf_token%}
+    {%for field in form%}
+        <div class="form-group">
+            {%if field.errors%}
+                <div class="alert alert-danger">
+                    {{field.errors}}
+                </div>
+            {%endif%}
+            {{field.label}}
+            {{field}}
+        </div>
+    {%endfor%}
+    <button class="btn btn-primary">обновить</button>
+</form>
+{%endblock%}

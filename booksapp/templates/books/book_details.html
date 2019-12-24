@@ -1,0 +1,19 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+    {{book.name}}-{{block.super}}
+{%endblock%}
+{%block content%}
+
+{% for info in all_info %}
+            <div class="alert alert-info">
+                <b>Название: </b>{{info.title}}<br>
+                <b>Автор: </b> {{info.author}}<br>
+                <b>Цена: </b> {{info.price}}<br>
+                <b>Владелец: </b><br>
+                <b>Дата добавления: </b><br>
+                <b>Описание: </b>
+            </div>
+            {% endfor %}
+
+{%endblock%}

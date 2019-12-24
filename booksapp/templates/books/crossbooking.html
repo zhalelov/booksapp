@@ -1,0 +1,31 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+    Booksapp
+{%endblock%}
+
+{%block content%}
+
+<div class = "container>">
+    <div class = "row">
+        <div class ="container-fluid" >
+              <h1>Книги</h1>
+                {% for info in page_object.object_list %}
+                <div class="alert alert-info">
+                    <b>Название: </b>{{info.title}}<br>
+                    <b>Автор: </b>
+                            {%for author in info.author.all%}
+                            <a href="{{author.get_absolute_url}}">{{author.title}}</a>
+                            {%endfor%}<br>
+                    <a href="{{info.get_absolute_url}}" class="btn btn-secondary my-2">Подробнее</a>
+                </div>
+                {%endfor%}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{%endblock%}

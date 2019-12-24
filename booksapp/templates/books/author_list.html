@@ -1,0 +1,13 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+Authors
+{%endblock%}
+
+{%block content%}
+<h1>Авторы</h1>
+{% for author in authors%}
+            <a href="{{author.get_absolute_url}}">{{author.title}}</a><br>
+       {% endfor %}
+
+{%endblock%}

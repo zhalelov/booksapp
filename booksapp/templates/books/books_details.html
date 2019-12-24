@@ -1,0 +1,22 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+    {{book_info.title}}-{{block.super}}
+{%endblock%}
+{%block content%}
+     <div class="alert alert-info">
+                <b>Название: </b>{{book_info.title|title}}<br>
+                <b>isbn: </b> {{book_info.isbn}}<br>
+                 <b>Автор: </b>
+                        {%for author in book_info.author.all%}
+                        <a href="{{author.get_absolute_url}}">{{author.title}}</a>
+                        {%endfor%}<br>
+                <b>Категория: </b> {{book_info.category}}<br>
+                <b>Издательство: </b> {{book_info.publishing_house}}<br>
+                <b>Владелец книги: </b> {{book_info.owner}}<br>
+                <b>Статус: </b> {{book_info.status}}<br>
+                <b>Оценка: </b>  {{book_info.rate}}<br>
+                <b>Дата добавления: </b>{{book_info.add_date}}<br>
+                <b>Описание: </b>{{book_info.descriptions}}<br>
+            </div>
+{%endblock%}

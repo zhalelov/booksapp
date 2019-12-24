@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{%block admin-panel%}
+<!-- Example split danger button -->
+
+<div class="btn-group">
+    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Создать
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{%url 'book_info_create_url'%}">Книгу</a>
+        <a class="dropdown-item" href="{%url 'author_create_url'%}">Автора</a>
+    </div>
+</div>
+
+<a href="{{admin_object.get_update_url}}" class="btn btn-light edit" style="{%if detail%}display: block;{%endif%}">Изменить</a>
+<a href="{{admin_object.get_delete_url}}" class="btn btn-danger delete" style="{%if detail%}display: block;{%endif%}">Удалить</a>
+
+
+{%endblock%}

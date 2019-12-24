@@ -1,0 +1,16 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+Удалить кгигу
+{%endblock%}
+
+{%block content%}
+<h1>Удалить книгу: {{book_info.title|title}}</h1>
+<form action="{%url 'book_info_delete_url' slug=book_info.slug%}" method="post">
+    {%csrf_token%}
+    <h3> Вы уверены что хотите удалить книгу: {{book_info.title}}</h3>
+    <a href="{%url 'books_details_url' slug=book_info.slug%}">Отмена</a>
+    <button type="submit"  name="button" class="btn btn-danger">Удалить</button>
+</form>
+
+{%endblock%}

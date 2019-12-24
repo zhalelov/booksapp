@@ -1,0 +1,16 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+Удалить автора
+{%endblock%}
+
+{%block content%}
+<h1>Удалить автора: {{author.title|title}}</h1>
+<form action="{%url 'author_delete_url' slug=author.slug%}" method="post">
+    {%csrf_token%}
+    <h3> Вы уверены что хотите удалить автора: {{author.title}}</h3>
+    <a href="{%url 'author_details_url' slug=author.slug%}">Отмена</a>
+    <button type="submit"  name="button" class="btn btn-danger">Удалить</button>
+</form>
+
+{%endblock%}

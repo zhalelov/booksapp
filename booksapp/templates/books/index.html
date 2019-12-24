@@ -1,0 +1,38 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+    Booksapp
+{%endblock%}
+
+{%block content%}
+
+<div class = "container>">
+    <div class = "row">
+        <div class ="col-4 offset-1">
+            <h1>Найти книгу в вашем городе </h1>
+            <form action="" method="post">
+                {%csrf_token%}
+                <label for ="book">Книга</label>
+                {{form.name}}
+                <input type = "submit" name="send" value="Найти" class="mt-2 btn btn-danger">
+            </form>
+
+        </div>
+        <div class ="col-5 offset-2">
+          <h1>Информация о книгах</h1>
+
+            {% for info in all_info %}
+            <div class="alert alert-info">
+                <b>Название: </b>{{info.title}}<br>
+                <b>Автор: </b> {{info.author}}<br>
+                <b>Цена: </b> {{info.price}}<br>
+                <a href="{%url 'book_details_url' id=info.id%}" class="btn btn-secondary my-2">Подробнее</a>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+{%endblock%}

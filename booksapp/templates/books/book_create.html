@@ -1,0 +1,15 @@
+{%extends 'books/base_booksapp.html'%}
+
+{%block title%}
+Bookcreate
+
+{%endblock%}
+{%block content%}
+
+<form action="{% url 'book_create_url'%}" method="post">
+    {%csrf_token%}
+    {{ form.name}}
+    <button type="submit" class="btn-btn-primary"> Create search</button>
+</form>
+
+{%endblock%}
