@@ -17,3 +17,4 @@ sqlparse==0.3.0
 UNKNOWN==0.0.0
 urllib3==1.25.7
 whitenoise==5.0.1
+psycopg2==2.6.2
