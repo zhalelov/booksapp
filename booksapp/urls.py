@@ -2,7 +2,7 @@ from django.urls import path
 from .views import *
 urlpatterns = [
     path('', crossbooking, name='crossbooking_url'),
-    path('search/', index, name='index_url'),
+    #path('search/', index, name='index_url'),
     path('createbook/', book_create.as_view(), name='book_create_url'),
     path('create_book_info/', Book_infoCreate.as_view(), name='book_info_create_url'),
     path('search/<id>/', book_details.as_view(), name='book_details_url'),
