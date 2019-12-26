@@ -1,4 +1,4 @@
-import pypyodbc
+#import pypyodbc
 from django.views.generic import View
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -41,40 +41,40 @@ def crossbooking(request):
 
     return render(request, 'books/crossbooking.html', context)
 
-def index(request):
-
-    books = Book.objects.all()
-    all_books=[]
-    mySQLServer = "LAPTOP-TT8V2S7B"
-    mySQLDatabase = "Crossbooking"
-    connection = pypyodbc.connect('Driver={SQL Server};'
-                                  'Server=' + mySQLServer + ';'
-                                  'Database=' + mySQLDatabase + ';')
-    cursor = connection.cursor()
-
-    mySQLQuery = """
-                    select *
-                    from all_books
-                    where author  like '%'+ ? +'%'
-                    """
-
-    if (request.method == 'POST'):
-        form = BooksForm(request.POST)
-        form.save()
-    form = BooksForm()
-
-    for book in books:
-        cursor.execute(mySQLQuery, [book.name])
-        all_info = cursor.fetchall()
-        for i in all_info:
-            info = {'title': i[0], 'author': i[1], 'price': i[2], 'id': i[3]}
-            all_books.append(info)
-
-    context = {'all_info': all_books, 'form': form}
-    cursor.close()
-    connection.commit()
-    connection.close()
-    return render(request, 'books/index.html', context)
+# def index(request):
+#
+#     books = Book.objects.all()
+#     all_books=[]
+#     mySQLServer = "LAPTOP-TT8V2S7B"
+#     mySQLDatabase = "Crossbooking"
+#     connection = pypyodbc.connect('Driver={SQL Server};'
+#                                   'Server=' + mySQLServer + ';'
+#                                   'Database=' + mySQLDatabase + ';')
+#     cursor = connection.cursor()
+#
+#     mySQLQuery = """
+#                     select *
+#                     from all_books
+#                     where author  like '%'+ ? +'%'
+#                     """
+#
+#     if (request.method == 'POST'):
+#         form = BooksForm(request.POST)
+#         form.save()
+#     form = BooksForm()
+#
+#     for book in books:
+#         cursor.execute(mySQLQuery, [book.name])
+#         all_info = cursor.fetchall()
+#         for i in all_info:
+#             info = {'title': i[0], 'author': i[1], 'price': i[2], 'id': i[3]}
+#             all_books.append(info)
+#
+#     context = {'all_info': all_books, 'form': form}
+#     cursor.close()
+#     connection.commit()
+#     connection.close()
+#     return render(request, 'books/index.html', context)
 
 class book_details(View):
     def get(self, request, id):
