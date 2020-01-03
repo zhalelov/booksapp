@@ -2,6 +2,13 @@ from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from time import time
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.db import models
+
+
+
 
 def gen_slug(s):
     new_slug = slugify(s, allow_unicode=True)
@@ -20,7 +27,7 @@ class Book_info(models.Model):
     author = models.ManyToManyField('Author', related_name='books')
     category = models.CharField(max_length=50,blank=True)
     publishing_house = models.CharField(max_length=50, db_index=True, blank=True)
-    owner = models.CharField(max_length=50, db_index=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     status = models.CharField(max_length=20, blank=True)
     rate = models.IntegerField(blank=True, null=True)
     add_date = models.DateTimeField(auto_now_add=True)

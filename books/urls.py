@@ -6,4 +6,5 @@ urlpatterns = [
     path('about/', about),
     path('admin/', admin.site.urls),
     path('', include('booksapp.urls')),
+    path('accounts/', include('allauth.urls')),
 ]

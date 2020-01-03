@@ -24,6 +24,8 @@ class objectCreateMixin:
 
         if bound_form.is_valid():
             new_obj = bound_form.save()
+            new_obj.owner = request.user
+            new_obj.save()
             return redirect(new_obj)
         return render(request, self.template, context={'form': bound_form})
 

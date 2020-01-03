@@ -31,6 +31,8 @@
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
         </form>
         </div>
+{% block body %}
+{%endblock%}
 
         <div class="container">
                 <div class ="col-cm">
@@ -69,7 +71,7 @@
                 </div>
         </div>
 
-        {%if request.user.is_authenticated and request.user.is_staff%}
+        {%if request.user.is_authenticated%}
             <div class="admin-panel align-item center">
                 <a href="/admin" class="btn btn-info">Admin</a>
                 {%block admin-panel%}
