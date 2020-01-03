@@ -28,7 +28,6 @@ class Book_info(models.Model):
     category = models.CharField(max_length=50,blank=True)
     publishing_house = models.CharField(max_length=50, db_index=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    owner = models.CharField(max_length=50,blank=True)
     status = models.CharField(max_length=20, blank=True)
     rate = models.IntegerField(blank=True, null=True)
     add_date = models.DateTimeField(auto_now_add=True)
