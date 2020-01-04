@@ -65,7 +65,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Don't forget this little dude.
-SITE_ID = 2
+SITE_ID = 3
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
