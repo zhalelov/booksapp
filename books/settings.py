@@ -65,7 +65,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Don't forget this little dude.
-SITE_ID = 3
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,4 +160,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+try:
+    from .settings_prod import *
+except:
+    pass
+
 
